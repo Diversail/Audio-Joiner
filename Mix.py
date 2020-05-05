@@ -4,10 +4,8 @@ z=[]
 c=0
 q=[]
 v=[]
-w=0
-m=0
 def Main():
-    global a,c,q,z
+    global c
     a=easygui.enterbox('How Many Music Tracks do you want to mix?' )
     a=int(a)
     for x in range(0,a):
@@ -28,11 +26,13 @@ def Main():
         c+=a
         c=AudioSegment.from_mp3(so[x])
         q.append(c)
-        print('%s is finished'% so[x])
+        print('%s is finished!'% so[x])
     output=q[0]
+    print('Recoding %s'% q[0])
     for x in range(0,a-1):
         a-=1
         print('Recoding %s'% so[a])
         output = output.overlay(q[a], position=0)
     output.export("mixed_sounds.mp3", format="mp3")
 Main()
+print('Done!')
